@@ -1,0 +1,28 @@
+.container-seach {
+    display: flex;
+    align-items: center;
+
+    .search-label {
+        display: flex;
+        align-items: center;
+        width: 250px;
+        padding: 3px 20px 3px 20px ;
+        background-color: #fff;
+        border-radius: 20px;
+
+        input {
+            font-size: 14px;
+            width: 100%;
+            outline: none;
+            border: none;
+        }
+    }
+}
+
+
+@media (max-width: 768px) {
+    .container-seach {
+        display: none;
+    }
+
+}

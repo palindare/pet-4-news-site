@@ -1,0 +1,32 @@
+@font-face {
+  font-family: Montserrat-bold;
+  src: url("./fonts/Montserrat-Bold.ttf");
+}
+
+* {
+  font-family: Montserrat-bold, sans-serif;
+}
+
+:root {
+  --nav-color:#262837;
+  --primary-bg: #1C1E27;
+  --slider-bg: #262837;
+  --footer-bg: #020817;
+}
+
+
+body {
+  margin: 0;
+}
+
+
+
+/* @media (prefers-color-scheme: dark) {
+  :root {
+    
+  }
+} */
+
+/* @tailwind base;
+@tailwind components;
+@tailwind utilities; */

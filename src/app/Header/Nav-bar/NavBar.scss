@@ -51,10 +51,14 @@
         }
       }
     }
+    .search-menu_container {
+      display: flex;
+      gap: 15px;
+    }
   }
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1300px) {
   .marking {
     background-color: var(--nav-color);
 
@@ -82,7 +86,7 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .marking {
     background-color: var(--nav-color);
 
@@ -98,13 +102,13 @@
       .navbar-content {
         margin: 0px 0px 0px 20px;
         .logo {
-            font-size: 28px;
-    
-            a {
-              text-decoration: none;
-              color: #fff;
-            }
+          font-size: 28px;
+
+          a {
+            text-decoration: none;
+            color: #fff;
           }
+        }
 
         .nav-menu {
           display: none;
@@ -115,6 +119,23 @@
             margin: 0px;
             gap: 25px;
           }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  .marking {
+    .container_nav {
+      margin: 0;
+      .search-menu_container {
+        width: 100%;
+        justify-content: space-between;
+      }
+      .navbar-content {
+        .logo {
+          display: none;
         }
       }
     }

@@ -1,6 +1,8 @@
 import "./NavBar.scss";
 import Link from "next/link";
 import Search from "./Search/Search";
+import MobileMenu from "./Mobile-Menu/MobileMenu";
+
 
 function NavBar() {
   return (
@@ -26,7 +28,10 @@ function NavBar() {
               </ul>
             </div>
           </div>
-          <Search />
+          <div className="search-menu_container">
+            <Search />
+            <MobileMenu />
+          </div>
         </div>
       </div>
     </>

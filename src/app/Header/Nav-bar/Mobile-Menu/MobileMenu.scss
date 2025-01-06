@@ -1,0 +1,28 @@
+.mobile-menu_container {
+  display: flex;
+  align-items: center;
+  margin: 0px 20px 0px 0px;
+  img {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+
+
+
+
+
+
+
+@media (max-width: 2560px) {
+    .mobile-menu_container {
+        display: none;
+      }
+}
+
+@media (max-width: 1024px) {
+    .mobile-menu_container {
+        display: flex;
+      }
+}

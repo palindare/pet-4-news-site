@@ -1,0 +1,65 @@
+
+.drawer-overlay_container {
+    position: absolute;
+    top: 0;
+    left: 0 ;
+    overflow: hidden;
+    width: 100%;
+    height: 100vh;
+    .menu-backdrop {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background-color: #000;
+        transition: all 0.3s ease-in-out;
+        opacity: 0.4;
+        z-index: 3;
+    }
+    
+    .navigation-drawer {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background-color: var(--nav-color);
+        transform: translateX(100%);
+        transition: all 0.3s ease-in-out;
+        z-index: 4;
+        .nav-menu {
+            display: flex;
+            margin: 0px 0px 100px 0px;
+            ul {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                list-style-type: none;
+                a {
+                    text-decoration: none;
+                    color: #fff;
+                    li {
+                        font-size: 20px;
+                        transition: all 0.15s ease-in-out;
+                        &:active {
+                            opacity: 0.6;
+                        }
+                    }
+                }
+            }
+        }
+        .close-menu {
+            position: absolute;
+            cursor: pointer;
+            top: 20;
+            right: 25;
+            img {
+                width: 25px;
+                height: 25px;
+            }
+        }
+    }
+}

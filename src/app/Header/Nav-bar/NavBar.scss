@@ -4,7 +4,11 @@
 }
 
 .marking {
+  position: sticky;
+  top: 0;
+  width: 100%;
   background-color: var(--nav-color);
+  border-bottom: 1px solid #ffffff16;
 
   .container_nav {
     display: flex;

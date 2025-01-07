@@ -1,0 +1,119 @@
+.marking-news_gallery {
+    width: 100%;
+    height: 850px;
+    background-color: var(--primary-bg);
+    padding: 30px 0px 22px 0px;
+    .news-container {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(2,1fr);
+        margin: 0 auto;
+        width: 1280px;
+        height: 100%;
+        gap: 5px;
+        .news-card-main  {
+            position: relative;
+            grid-column: span 2;
+            width: 100%;
+            height: 100%;
+            background-color: var(--news-card-background);
+            .news-card-info {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                .post-tags {
+                    position: absolute;
+                    display: flex;
+                    align-items: center;
+                    padding: 2px 12px 2px 12px ;
+                    background-color: var(--card-background);
+                    border-radius: 3px;
+                    top: 30px;
+                    left: 30px;
+                    .bookmark-icon {
+                        margin: 4px 4px 0px 0px ;
+                        img {
+                            width: 14px;
+                            height: 13px;
+                        }
+                    }
+                    .category-text {
+                        span {
+                            font-size: 14px;
+                            color: #fff;
+                        }
+                    }
+                }
+                .post-title {
+                    position: absolute;
+                    bottom: 45px;
+                    left: 30px;
+                    font-size: 24px;
+                    a {
+                        color: #fff;
+                        text-decoration: none;
+                    }
+                }
+                .post-date {
+                    position: absolute;
+                    bottom: 20px;
+                    left: 30px;
+                    color: #fff;
+                    font-size: 12px;
+                    opacity: 0.4;
+                }
+            }
+        }
+        .news-card {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background-color: var(--news-card-background);
+            
+            .post-tags_card {
+                position: absolute;
+                display: flex;
+                align-items: center;
+                padding: 0px 10px 0px 10px ;
+                background-color: var(--card-background);
+                border-radius: 3px;
+                bottom: 100px;
+                left: 20px;
+                .bookmark-icon_card {
+                    margin: 4px 4px 0px 0px ;
+                    img {
+                        width: 14px;
+                        height: 13px;
+                    }
+                }
+                .category-text_card {
+                    span {
+                        font-size: 14px;
+                        color: #fff;
+                    }
+                }
+            }
+            .post-title_card {
+                position: absolute;
+                bottom: 45px;
+                left: 20px;
+                width: 280px;
+                font-size: 17px;
+                a {
+                    color: #fff;
+                    text-decoration: none;
+                }
+            }
+            .post-date_card {
+                position: absolute;
+                bottom: 20px;
+                left: 20px;
+                color: #fff;
+                font-size: 12px;
+                opacity: 0.4;
+            }
+        }
+    }
+}

@@ -9,6 +9,7 @@
   width: 100%;
   background-color: var(--nav-color);
   border-bottom: 1px solid #ffffff16;
+  z-index: 5;
 
   .container_nav {
     display: flex;

@@ -5,12 +5,15 @@
 
 * {
   font-family: Montserrat-bold, sans-serif;
+  box-sizing: border-box;
 }
 
 :root {
   --nav-color:#262837;
+  --image-background: #4B4E61;
   --news-card-background: #333648;
   --card-background: #314feb;
+  --card-background-hover: #2241db;
   --primary-bg: #1C1E27;
   --slider-bg: #262837;
   --footer-bg: #020817;

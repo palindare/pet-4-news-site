@@ -9,9 +9,9 @@
         grid-template-columns: repeat(4, 1fr);
         grid-template-rows: repeat(2, 1fr);
         margin: 0 auto;
-        max-width: 1280px;
+        max-width: 1280px;  
         height: 100%;
-        gap: 5px;
+        gap: 8px;
 
         .news-card-main {
             position: relative;
@@ -19,8 +19,40 @@
             width: 100%;
             height: 100%;
             background-color: var(--news-card-background);
+            overflow: hidden;
+
+            .news-card-image {
+                cursor: pointer;
+                width: 100%;
+                height: 100%;
+                &::after {
+                    pointer-events: none;
+                    display: block;
+                    position: absolute;
+                    content: "";
+                    top: 0px;
+                    left: 0px;
+                    width: 100%;
+                    height: 100%;
+                }
+                &:hover::after {
+                    box-shadow: inset 0px -130px 100px -50px #314feb; 
+                }
+                img {
+                    position: relative;
+                    width: 100%;
+                    max-height: 480px;
+                    object-fit: cover;
+                    transition: all 0.3s;
+                    &:hover  {
+                        max-height: 460px;
+                    }
+                    
+                }
+            }
 
             .news-card-info {
+                pointer-events: none;
                 position: absolute;
                 top: 0;
                 left: 0;
@@ -38,10 +70,9 @@
                     left: 30px;
 
                     .bookmark-icon {
-                        margin: 4px 4px 0px 0px;
-
+                        margin: 4px 7px 0px 0px;
                         img {
-                            width: 14px;
+                            width: 15px;
                             height: 13px;
                         }
                     }
@@ -50,6 +81,7 @@
                         a {
                             text-decoration: none;
                             span {
+                                text-shadow: 0px 0px 8px #000000;
                                 font-size: 14px;
                                 color: #fff;
                             }
@@ -59,10 +91,12 @@
 
                 .post-title {
                     position: absolute;
-                    bottom: 45px;
+                    width: 570px;
+                    bottom: 40px;
                     left: 30px;
-                    font-size: 24px;
-
+                    font-size: 23px;
+                    text-shadow: 0px 0px 5px #000000;
+                    
                     a {
                         color: #fff;
                         text-decoration: none;
@@ -80,20 +114,52 @@
             }
         }
 
+      
         .news-card {
             position: relative;
+            cursor: pointer;
             width: 100%;
             height: 100%;
             background-color: var(--news-card-background);
+            overflow: hidden;
+            .news-card-image {
+                width: 100%;
+                height: 100%;
+                transition: all 0.3s;
+                &::after {
+                    pointer-events: none;
+                    display: block;
+                    position: absolute;
+                    content: "";
+                    top: 0px;
+                    left: 0px;
+                    width: 100%;
+                    height: 100%;
+                }
+                &:hover::after {
+                    box-shadow: inset 0px -130px 100px -50px #314feb; 
+                }
+                img {
+                    width: 100%;
+                    max-height: 480px;
+                    object-fit: cover;
+                    transition: all 0.3s;
+
+                    &:hover {
+                        max-height: 460px;
+                    }
+                }
+            }
 
             .post-tags_card {
                 position: absolute;
+                pointer-events: none;
                 display: flex;
                 align-items: center;
                 padding: 0px 10px 0px 10px;
                 background-color: var(--card-background);
                 border-radius: 3px;
-                bottom: 100px;
+                bottom: 85px;
                 left: 20px;
 
                 .bookmark-icon_card {
@@ -117,12 +183,12 @@
             }
 
             .post-title_card {
+                pointer-events: none;
                 position: absolute;
-                bottom: 45px;
+                bottom: 40px;
                 left: 20px;
                 width: 280px;
                 font-size: 17px;
-
                 a {
                     color: #fff;
                     text-decoration: none;
@@ -130,6 +196,7 @@
             }
 
             .post-date_card {
+                pointer-events: none;
                 position: absolute;
                 bottom: 20px;
                 left: 20px;
@@ -138,6 +205,7 @@
                 opacity: 0.4;
             }
         }
+
     }
 }
 
@@ -150,17 +218,28 @@
             grid-template-columns: repeat(2, 1fr);
             grid-template-rows: repeat(4, 1fr);
             max-width: 950px;
-
             .news-card-main {
                 position: relative;
                 grid-column: span 2;
                 width: 100%;
                 height: 400px;
+                .news-card-image {
+                    &::after {
+                    }
+                    &:hover::after {
+                        box-shadow: 0px 0px 0px 0px #314feb; 
+                    }
+                }
             }
 
             .news-card {
                 width: 100%;
                 height: 400px;
+                .news-card-image {
+                    &:hover::after {
+                        box-shadow: inset 0px 0px 0px 0px #314feb; 
+                    }
+                }
             }
         }
     }
@@ -217,10 +296,14 @@
                         }
 
                         .category-text {
+
                             span {}
                         }
                     }
                     .post-title {
+                        font-size: 20px;
+                        width: 350px;
+
                         a {}
                     }
 
@@ -255,6 +338,8 @@
                     }
                     .post-title {
                         font-size: 18px;
+                        width: 300px;
+
                         a {}
                     }
 
@@ -312,6 +397,7 @@
                         }
                     }
                     .post-title {
+                        width: 250px;
                         font-size: 15px;
                         a {}
                     }

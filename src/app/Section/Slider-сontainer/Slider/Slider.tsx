@@ -101,7 +101,6 @@ function Slider({ data }) {
     startAutoSlide(); // Возвращаем автопереходы
   };
 
-  console.log(data.length - 1)
 
   return (
     <div
@@ -111,18 +110,18 @@ function Slider({ data }) {
     >
       {slideData &&
         slideData.map(({ title, image_url, category, published_date }, index) => {
-          const date = new Date(published_date)
+          const date = new Date(published_date);
           const formattedDate = date.toLocaleString("ru-RU", {
             day: "2-digit",
             month: "2-digit",
             year: "numeric",
             timeZone: "Europe/Moscow",
           });
-        
+  
           return (
             <div
-              key={index}
-              onTransitionEnd={() => infiniteTransit()}
+              key={index} // Prefer a unique `id` if available
+              onTransitionEnd={infiniteTransit}
               style={{
                 transition: currentTransition ? "all 0.3s" : "none",
                 transform: `translateX(${(index - slideNum) * 100}%)`,
@@ -138,29 +137,32 @@ function Slider({ data }) {
                     <Link href="#">{title}</Link>
                   </div>
                   <div className="slider-post_tags">
-                    <div className="slider-bookmark_icon"><Image src={bookmark_img} alt="image"></Image></div>
-                    <div className="slider-category_text"><Link href="#"><span>{category}</span></Link></div>
+                    <div className="slider-bookmark_icon">
+                      <Image src={bookmark_img} alt="image" />
+                    </div>
+                    <div className="slider-category_text">
+                      <Link href="#">
+                        <span>{category}</span>
+                      </Link>
+                    </div>
                   </div>
-                  <div className="slider-post_date">
-                    {formattedDate}
-                  </div>
+                  <div className="slider-post_date">{formattedDate}</div>
                 </div>
               </div>
             </div>
           );
         })}
-      <div
-        onClick={() => nextSlide()}
-        className="slider-next_arrow slider-arrow"
-      >
-        <Image src={arrow_img} alt="img" />
-      </div>
-      <div
-        onClick={() => previousSlide()}
-        className="slider-previous_arrow slider-arrow"
-      >
-        <Image src={arrow_img} alt="img" />
-      </div>
+  
+      {slideData && slideData.length > 1 && ( // Ensure there are slides before showing controls
+        <>
+          <div onClick={nextSlide} className="slider-next_arrow slider-arrow">
+            <Image src={arrow_img} alt="Next Slide" />
+          </div>
+          <div onClick={previousSlide} className="slider-previous_arrow slider-arrow">
+            <Image src={arrow_img} alt="Previous Slide" />
+          </div>
+        </>
+      )}
     </div>
   );
 }

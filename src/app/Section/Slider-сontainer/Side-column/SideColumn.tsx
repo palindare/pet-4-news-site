@@ -8,14 +8,12 @@ function SideColumn({ data }) {
   const [delayedIndex, setDelayedIndex] = useState(0);
   const updateData = [...data.slice(-2), ...data.slice(0, 2)];
   const state = useSelector((state) => state.currentSlide.slide);
-  console.log(data)
   
   useEffect(() => {
     const normalizedIndex = state >= data.length ? 0 : state; 
     setDelayedIndex(normalizedIndex);
   }, [state]);
   
-  console.log(state)
 
   return (
     <div className="side-column">

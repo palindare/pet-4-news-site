@@ -2,38 +2,63 @@ import "./SideBar.scss";
 import Image from "next/image";
 import Link from "next/link";
 import ad_img from "../../images/Side-bar/ad.jpg"
+import LoadingList from "./Loading-list/LoadingList";
+import LoadingImage from "./Loading-image/LoadingImage";
+import { useEffect, useState } from "react";
+import { useInView } from "react-intersection-observer";
 
+function SideBar({ dataApi }) {
+  const [allCategory, setAllCategory] = useState([])
+  const {ref, inView } = useInView({ threshold: 0.6 });
+  const [currentCard, setCurrentCard] = useState(6)
+  const [updateData, setUpdateData] = useState(dataApi?.slice(0, 6) || [])
+  const [showMore, setShowMore] = useState(false)
+  useEffect(() => {
+    if (!dataApi || dataApi.length === 0) return; 
 
-function SideBar () {
+    setAllCategory(prevCategories => {
+      const newCategories = [...prevCategories]; 
+
+      dataApi.forEach(({ image_url, category }) => {
+        if (newCategories.every(item => item.category !== category)) {
+          newCategories.push({ category, image: image_url }); 
+        }
+      });
+
+      return newCategories;
+    });
+
+  }, [dataApi]);
+
+ 
+  useEffect(() => {
+      if (inView && dataApi) {
+          setCurrentCard(prev => prev + 6)
+      }
+  }, [inView])
+
+  useEffect(() => {
+      if (dataApi) {
+          setUpdateData(dataApi.slice(0, currentCard))
+      }
+  }, [currentCard, dataApi])
+
   return (
-  <>
-  <div className="sidebar-container">
-    <div className="sidebar-wrapper">
+    <>
+      <div className="sidebar-container">
+        <div className="sidebar-wrapper">
           <div className="category-list">
-            <div className="category-tab">
-              <div className="category-img">
-                {/* <Image src={test_img} alt="img" /> */}
+            {allCategory && allCategory.length !== 0 ? allCategory.map(({ category, image }) => {
+              return (
+                <div key={`${category}-${image}`} className="category-tab">
+                  <div className="category-img">
+                    <Image src={image} alt="img" width={400} height={700} />
+                  </div>
+                  <div className="category-text"><Link href="#">{category}</Link></div>
                 </div>
-              <div className="category-text"><Link href="#">Стиль</Link></div>
-            </div>
-            <div className="category-tab">
-              <div className="category-img">
-                {/* <Image src={test_img} alt="img" /> */}
-                </div>
-              <div className="category-text"><Link href="#">Стиль</Link></div>
-            </div>
-            <div className="category-tab">
-              <div className="category-img">
-                {/* <Image src={test_img} alt="img" /> */}
-                </div>
-              <div className="category-text"><Link href="#">Стиль</Link></div>
-            </div>
-            <div className="category-tab">
-              <div className="category-img">
-                {/* <Image src={test_img} alt="img" /> */}
-                </div>
-              <div className="category-text"><Link href="#">Стиль</Link></div>
-            </div>
+              )
+            }) : <LoadingList/>}
+
           </div>
           <div className="ad-container">
             <div className="ad-card">
@@ -51,18 +76,21 @@ function SideBar () {
               <div className="gallery-separation"></div>
             </div>
             <div className="gallery-wrapper">
-              <Link href="#"><div className="gallery-card"></div></Link>
-              <Link href="#"><div className="gallery-card"></div></Link>
-              <Link href="#"><div className="gallery-card"></div></Link>
-              <Link href="#"><div className="gallery-card"></div></Link>
-              <Link href="#"><div className="gallery-card"></div></Link>
-              <Link href="#"><div className="gallery-card"></div></Link>
+            {updateData && updateData.length !== 0? updateData.map(({image_url}) => {
+              return (
+                <Link key={`${image_url}`} href="#"><div className="gallery-card"><Image style={{opacity: showMore ? "1" : "0.6"}} src={image_url} alt="image" width={400} height={700}/></div></Link>
+              )
+            }) : <LoadingImage/>}
             </div>
+            <div className="show-more_btn">
+             {updateData.length !== 0 ? <button style={{display: showMore ? "none" : "block"}} onClick={() => setShowMore(!showMore)} className="show-more">Показать ещё</button> : null} 
+            </div>
+            <div style={{display: showMore ? "block" : "none"}}  ref={ref} className="trigger-infinite_scroll" />
           </div>
-    </div>
-  </div>
-  </>
-)
+        </div>
+      </div>
+    </>
+  )
 }
 
 export default SideBar;

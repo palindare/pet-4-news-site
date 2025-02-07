@@ -1,9 +1,9 @@
-import HomePage from "./Home-page/HomePage";
+import NewsCard from "../News-card/NewsCard";
 
 function Home() {
   return (
   <>
-    <HomePage/>
+    <NewsCard/>
   </>
   )
 }

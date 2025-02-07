@@ -10,13 +10,13 @@ function NavBar() {
       <div className="marking">
         <div className="container_nav">
           <div className="navbar-content">
-            <div className="logo"><Link href="#">Kronika</Link></div>
+            <div className="logo"><Link href="/">Kronika</Link></div>
             <div className="nav-menu">
               <ul>
-                <Link href="#">
+                <Link href="/">
                   <li>Главная</li>
                 </Link>
-                <Link href="#">
+                <Link href="/news">
                   <li>Новости</li>
                 </Link>
                 <Link href="#">

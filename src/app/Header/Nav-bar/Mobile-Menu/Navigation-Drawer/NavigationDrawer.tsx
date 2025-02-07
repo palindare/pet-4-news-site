@@ -13,8 +13,8 @@ function NavigationDrawer({showMenu,setShowMenu}) {
             <div className="container-menu">
                 <div style={{visibility: showMenu ? "visible" : "hidden", opacity: showMenu ? "1" : "0"}} className="nav-menu">
                     <ul>
-                        <Link href="#"><li>Главная</li></Link>
-                        <Link href="#"><li>Новости</li></Link>
+                        <Link href="/"><li>Главная</li></Link>
+                        <Link href="/news"><li>Новости</li></Link>
                         <Link href="#"><li>О нас</li></Link>
                         <Link href="#"><li>Контакты</li></Link>
                     </ul>

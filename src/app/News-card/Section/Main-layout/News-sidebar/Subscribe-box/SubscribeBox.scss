@@ -4,7 +4,7 @@
 }
 
 .subscribe-box {
-    width: 100%;
+    width: 100% ;
     background-color: var(--news-card-background);
     margin: 30px 0 0;
     padding: 20px;
@@ -107,6 +107,32 @@
                 width: 165px;
             }
             .subscribe-separation {
+            }
+        }
+        .subscribe-input {
+            .subscribe-input-wrapper {
+                input {
+                }
+            }
+        }
+        .subscribe-button {
+            button {
+            }
+        }
+        .subscribe-explanation {
+        }
+    }
+}
+
+@media (max-width:360px) {
+    .subscribe-box {
+        .subscribe-discription_box {
+            .subscribe-title {
+                width: 165px;
+                font-size: 19px;
+            }
+            .subscribe-separation {
+                display: none;
             }
         }
         .subscribe-input {

@@ -1,21 +1,44 @@
+"use client"
 import "./CategoryBox.scss";
+import { useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
 
-function CategoryBox() {
+function CategoryBox({data}) {
+    const [currentCategory, setCurrentCategory] = useState("Technology")
+    const [allCategory,setAllCategory] = useState([])
+    
+    const dispatch = useDispatch()
+    useEffect(() => {
+        if (data && data.length) {
+            const category = []
+            data.forEach(value => {
+                if (category && category.every(items => items !== value.category))
+                    category.push(value.category)
+                }) 
+            setAllCategory(category)
+        }
+    },[data])
+
+    const changeCategoryHandler = (category) => {
+        setCurrentCategory(category)
+        dispatch({type: "CHANGE_CATEGORY", payload: category})
+        dispatch({type: "CHANGE_PAGE", payload: 1})
+    }
+
     return (
-        <>
             <div className="category-box">
                 <div className="category-box_description">
                     <div className="category-title">Категории</div>
                     <div className="category-separation"><span></span></div>
                 </div>
                 <div className="category-box_list">
-                    <div className="category-box_inner category-inner_active">Business</div>
-                    <div className="category-box_inner">Lifestyle</div>
-                    <div className="category-box_inner">Technology</div>
-                    <div className="category-box_inner">Travel</div>
+                    {allCategory && allCategory.map(value => {
+                        return (
+                            <div key={value} onClick={() => changeCategoryHandler(value)} className={`category-box_inner ${currentCategory === value ? "category-inner_active" : null } `}>{value}</div>
+                        )
+                    })}
                 </div>
             </div>
-        </>
     )
 }
 

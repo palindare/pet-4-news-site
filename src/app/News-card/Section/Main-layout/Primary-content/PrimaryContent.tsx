@@ -1,86 +1,67 @@
 import "./PrimaryContent.scss";
 import Image from "next/image";
 import PageNumbers from "./Page-numbers/PageNumbers";
+import { useEffect, useRef, useState } from "react";
+import { useSelector } from "react-redux";
 
-function PrimaryContent () {
+function PrimaryContent ({data}) {
+  const [updateData,setUpdateData] = useState([])
+  const [allData,setAllData] = useState([])
+  const state = useSelector(state => state.currentCategory.category)
+  const statePage = useSelector(state => state.currentCategory.page)
+  const primaryContentRef = useRef()
+
+  const getPageData = (data,page) => {
+    if (data && data.length !== 0) {
+      const startPage = (page - 1) * 8
+      const endPage = startPage + 8
+      return data.slice(startPage,endPage)
+    }
+  } 
+
+  useEffect(() => {
+    const groupedArticles = data.reduce((acc, article) => {
+      if (!acc[article.category]) {
+        acc[article.category] = [];
+      }
+      acc[article.category].push(article);
+      return acc;
+    }, {});
+    const changeData = getPageData(groupedArticles[state],statePage)
+    setAllData(groupedArticles[state])
+    setUpdateData(changeData)
+    if (primaryContentRef.current) {
+      primaryContentRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  },[data,state,statePage])
+
   return (
   <>
     <div className="primary-content">
+      <div ref={primaryContentRef} className="scroll-view"></div>
       <div className="primary-wrapper">
-        <div className="brief-card">
-          <div className="brief-image"></div>
+        {updateData && updateData.map(({image_url,id,title,content,published_date}) => {
+             const text = content.length > 225 ? content.slice(0, 225).trim() + "..." : content;
+             const date = new Date(published_date).toLocaleString("ru-RU", {
+                 day: "2-digit",
+                 month: "2-digit",
+                 year: "numeric",
+                 timeZone: "Europe/Moscow",
+             });
+          return (
+        <div key={`${id}-${published_date}-${title}`} className="brief-card">
+          <div className="brief-image"><Image src={image_url} alt="img" width={400} height={700}/></div>
           <div className="brief-container">
-              <div className="brief-title">Exclusive insights from behind the scenes at Fashion Week</div>
+              <div className="brief-title">{title}</div>
               <div className="brief-date">12.12.2025</div>
-              <div className="brief-discription">Technology has become an inextricable part of modern life, transforming virtually every aspect of how we live, interact, and work. transforming virtually every aspect of how we live, interact, and work...</div>
+              <div className="brief-discription">{text}</div>
               <div className="brief-more">Read more</div>
           </div>
         </div>
-        <div className="brief-card">
-          <div className="brief-image"></div>
-          <div className="brief-container">
-              <div className="brief-title">Exclusive insights from behind the scenes at Fashion Week</div>
-              <div className="brief-date">12.12.2025</div>
-              <div className="brief-discription">Technology has become an inextricable part of modern life, transforming virtually every aspect of how we live, interact, and work. transforming virtually every aspect of how we live, interact, and work...</div>
-              <div className="brief-more">Read more</div>
-          </div>
-        </div>
-        <div className="brief-card">
-          <div className="brief-image"></div>
-          <div className="brief-container">
-              <div className="brief-title">Exclusive insights from behind the scenes at Fashion Week</div>
-              <div className="brief-date">12.12.2025</div>
-              <div className="brief-discription">Technology has become an inextricable part of modern life, transforming virtually every aspect of how we live, interact, and work. transforming virtually every aspect of how we live, interact, and work...</div>
-              <div className="brief-more">Read more</div>
-          </div>
-        </div>
-        <div className="brief-card">
-          <div className="brief-image"></div>
-          <div className="brief-container">
-              <div className="brief-title">Exclusive insights from behind the scenes at Fashion Week</div>
-              <div className="brief-date">12.12.2025</div>
-              <div className="brief-discription">Technology has become an inextricable part of modern life, transforming virtually every aspect of how we live, interact, and work. transforming virtually every aspect of how we live, interact, and work...</div>
-              <div className="brief-more">Read more</div>
-          </div>
-        </div>
-        <div className="brief-card">
-          <div className="brief-image"></div>
-          <div className="brief-container">
-              <div className="brief-title">Exclusive insights from behind the scenes at Fashion Week</div>
-              <div className="brief-date">12.12.2025</div>
-              <div className="brief-discription">Technology has become an inextricable part of modern life, transforming virtually every aspect of how we live, interact, and work. transforming virtually every aspect of how we live, interact, and work...</div>
-              <div className="brief-more">Read more</div>
-          </div>
-        </div>
-        <div className="brief-card">
-          <div className="brief-image"></div>
-          <div className="brief-container">
-              <div className="brief-title">Exclusive insights from behind the scenes at Fashion Week</div>
-              <div className="brief-date">12.12.2025</div>
-              <div className="brief-discription">Technology has become an inextricable part of modern life, transforming virtually every aspect of how we live, interact, and work. transforming virtually every aspect of how we live, interact, and work...</div>
-              <div className="brief-more">Read more</div>
-          </div>
-        </div>
-        <div className="brief-card">
-          <div className="brief-image"></div>
-          <div className="brief-container">
-              <div className="brief-title">Exclusive insights from behind the scenes at Fashion Week</div>
-              <div className="brief-date">12.12.2025</div>
-              <div className="brief-discription">Technology has become an inextricable part of modern life, transforming virtually every aspect of how we live, interact, and work. transforming virtually every aspect of how we live, interact, and work...</div>
-              <div className="brief-more">Read more</div>
-          </div>
-        </div>
-        <div className="brief-card">
-          <div className="brief-image"></div>
-          <div className="brief-container">
-              <div className="brief-title">Exclusive insights from behind the scenes at Fashion Week</div>
-              <div className="brief-date">12.12.2025</div>
-              <div className="brief-discription">Technology has become an inextricable part of modern life, transforming virtually every aspect of how we live, interact, and work. transforming virtually every aspect of how we live, interact, and work...</div>
-              <div className="brief-more">Read more</div>
-          </div>
-        </div>
+          )
+        })}
       </div>
-      <PageNumbers/>
+      <PageNumbers data={allData}/>
     </div>
   </>
 )

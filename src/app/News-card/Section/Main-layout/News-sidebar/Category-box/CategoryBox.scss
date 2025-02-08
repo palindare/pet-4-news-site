@@ -30,6 +30,7 @@
         flex-direction: column;
         gap: 5px;
         .category-box_inner {
+            cursor: pointer;
             padding: 5px 0px 5px 10px;
             font-size: 16px;
             color: #fff;
@@ -52,6 +53,28 @@
         }
         .category-box_list {
             .category-box_inner {
+            }
+            .category-inner_active {
+            }
+        }
+    }
+}
+
+
+@media (max-width: 360px) {
+    .category-box {
+        grid-area: category;
+        .category-box_description {
+            .category-title {
+                font-size: 19px;
+            }
+            .category-separation {
+                display: none;
+            }
+        }
+        .category-box_list {
+            .category-box_inner {
+                font-size: 15px;
             }
             .category-inner_active {
             }

@@ -52,8 +52,8 @@ function PrimaryContent ({data}) {
         <div key={`${id}-${published_date}-${title}`} className="brief-card">
           <div className="brief-image"><Image src={image_url} alt="img" width={400} height={700}/></div>
           <div className="brief-container">
-              <div className="brief-title">{title}</div>
-              <div className="brief-date">12.12.2025</div>
+              <div className="brief-title"><span>{title}</span></div>
+              <div className="brief-date">{date}</div>
               <div className="brief-discription">{text}</div>
               <div className="brief-more">Read more</div>
           </div>

@@ -7,19 +7,28 @@ import { useInView } from "react-intersection-observer";
 
 function MainContent({ dataApi }) {
     const { ref, inView } = useInView({ threshold: 0.6 });
-    const [currentCard, setCurrentCard] = useState(12)
-    const [updateData, setUpdateData] = useState(dataApi?.slice(0, 12) || [])
+    const [currentCard, setCurrentCard] = useState(14)
+    const [updateData, setUpdateData] = useState(dataApi?.slice(0, 14) || [])
+
+    
+
     useEffect(() => {
         if (inView && dataApi) {
-            setCurrentCard(prev => prev + 6)
+            setCurrentCard(prev => prev + 8)
         }
     }, [inView])
 
     useEffect(() => {
         if (dataApi) {
-            setUpdateData(dataApi.slice(0, currentCard))
+            const uniqueData = dataApi
+                .slice(0, currentCard)
+                .filter((item, index, self) =>
+                    index === self.findIndex((el) => el.content === item.content)
+                );
+    
+            setUpdateData(uniqueData);
         }
-    }, [currentCard, dataApi])
+    }, [currentCard, dataApi]);
 
     return (
         <div className="content-wrapper">
@@ -29,8 +38,8 @@ function MainContent({ dataApi }) {
             </div>
             <div className="news-feed">
                 {updateData && updateData.length > 0 ? (
-                    updateData.map(({ id, title, published_date, image_url }) => {
-                        const text = title.length > 57 ? title.slice(0, 57).trim() + "..." : title;
+                    updateData.map(({ id, translated_title, published_date, image_url }) => {
+                        const text = translated_title.length > 51 ? translated_title.slice(0, 51).trim() + "..." : translated_title;
                         const date = new Date(published_date).toLocaleString("ru-RU", {
                             day: "2-digit",
                             month: "2-digit",

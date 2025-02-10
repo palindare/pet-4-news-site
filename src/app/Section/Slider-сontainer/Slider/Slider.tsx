@@ -109,7 +109,7 @@ function Slider({ data }) {
       onMouseLeave={handleMouseLeave} // Возобновление автоперехода при уходе мыши
     >
       {slideData &&
-        slideData.map(({ title, image_url, category, published_date }, index) => {
+        slideData.map(({ translated_title, image_url, category, published_date }, index) => {
           const date = new Date(published_date);
           const formattedDate = date.toLocaleString("ru-RU", {
             day: "2-digit",
@@ -134,7 +134,7 @@ function Slider({ data }) {
               <div className="slider-card">
                 <div className="slider-info">
                   <div className="slider-post_title">
-                    <Link href="#">{title}</Link>
+                    <Link href="#">{translated_title}</Link>
                   </div>
                   <div className="slider-post_tags">
                     <div className="slider-bookmark_icon">

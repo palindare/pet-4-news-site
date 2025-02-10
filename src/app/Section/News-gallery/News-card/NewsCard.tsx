@@ -6,19 +6,19 @@ function NewsCard({ newsData }) {
   return (
     <>
       {newsData &&
-        newsData.map(({ title,image_url,published_date,category,main }) => {
+        newsData.map(({ translated_title,image_url,published_date,category,main }) => {
           return main ? (
             <NewsCardBig
-              key={`${title}-${image_url}`}
-              title={title}
+              key={`${translated_title}-${image_url}`}
+              translated_title={translated_title}
               image_logo={image_url}
               published_date={published_date}
               category={category}
             />
           ) : (
             <NewsCardMini
-              key={`${title}-${image_url}`} 
-              title={title}
+              key={`${translated_title}-${image_url}`} 
+              translated_title={translated_title}
               image_logo={image_url}
               published_date={published_date}
               category={category}

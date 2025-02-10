@@ -97,3 +97,34 @@
         }
     }
 }
+
+@media (max-width: 850px) {
+    .ad-container {
+        .ad-card {
+            &:hover .ad-card-image {
+            }
+            .ad-card-image {
+                img {
+                    object-fit: cover;
+                }
+            }
+    
+            .ad-card-content {
+                .ad-main-text {
+                }
+    
+                .ad-text {
+                }
+    
+                .ad-button {
+                    a {
+                        button {
+                            &:hover {
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -19,7 +19,7 @@ function SideColumn({ data }) {
     <div className="side-column">
       <div className="marking-tabs_container">
         <div className="tabs_container">
-          {updateData.map(({ title, image_url, published_date }, index) => {
+          {updateData.map(({ translated_title, image_url, published_date }, index) => {
              const date = new Date(published_date)
              const formattedDate = date.toLocaleString("ru-RU", {
                day: "2-digit",
@@ -29,13 +29,13 @@ function SideColumn({ data }) {
              });
            
             return (
-              <div key={`${title}-${index}-${image_url}`} className="slider-tab">
+              <div key={`${translated_title}-${index}-${image_url}`} className="slider-tab">
                 <div className="slider-news-image">
                   <Image src={image_url} alt="img" width={400} height={700} />
                 </div>
                 <div className={`slider-info_box ${delayedIndex === index ? "slider-info_active" : ""}`}>
                   <div className="slider-news-title">
-                    <Link href="#">{title}</Link>
+                    <Link href="#">{translated_title}</Link>
                   </div>
                   <div className="slider-news-date">
                     {formattedDate}

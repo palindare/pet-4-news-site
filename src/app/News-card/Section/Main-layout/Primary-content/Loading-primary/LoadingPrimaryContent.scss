@@ -1,0 +1,203 @@
+@font-face {
+    font-family: Montserrat-SemiBold;
+    src: url("../../../../../fonts/Montserrat-Medium.ttf");
+}
+
+.primary-content_loading {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    .primary-wrapper_loading {
+        width: 100%;
+        height: 100%;
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+        grid-template-rows: repeat(4,1fr);
+        gap: 35px;
+        .brief-card_loading {
+            width: 100%;
+            height: 100%;
+            .brief-image_loading {
+                overflow: hidden;
+                position: relative;
+                width: 100%;
+                height: 260px;
+                background-color: var(--news-card-background);
+                img {
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+            .brief-container_loading {
+                width: 100%;
+                height: 80px;
+                .brief-title_loading {
+                    overflow: hidden;
+                    position: relative;
+                    height: 22px;
+                    width: 100%;
+                    margin: 10px 0px 0px;
+                    background-color: var(--news-card-background);
+                    max-width: 420px;
+                    font-size: 18px;
+                    color: #fff;
+                }
+                .brief-date_loading {
+                    overflow: hidden;
+                    position: relative;
+                    margin: 10px 0px 0px;
+                    font-size: 14px;
+                    width: 20%;
+                    height: 15px;
+                    background-color: var(--news-card-background);
+                }
+                .brief-discription_loading {
+                    overflow: hidden;
+                    position: relative;
+                    width: 100%;
+                    height: 22px;
+                    margin: 12px 0px 0px;
+                    background-color: var(--news-card-background);
+                    font-size: 16px;
+                    color: #fff;
+                    font-family: Montserrat-SemiBold,sans-serif;
+                    opacity: 0.8;
+                }
+                .brief-more_loading {
+                    margin: 8px 0px 0px;
+                    color: #fff;
+                    font-size: 17px;
+                }
+            }
+        }
+    }
+}
+
+.brief-image_loading::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -150%;
+    width: 150%;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 0) 100%);
+    transform: skewX(-20deg);
+    animation: shimmer 2s infinite;
+}
+  
+.brief-title_loading::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -150%;
+    width: 150%;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 0) 100%);
+    transform: skewX(-20deg);
+    animation: shimmer 2s infinite;
+}
+
+.brief-date_loading::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -150%;
+    width: 150%;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 0) 100%);
+    transform: skewX(-20deg);
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% {
+      left: -150%;
+    }
+    100% {
+      left: 150%;
+    }
+}
+
+
+@media (max-width: 1024px) {
+.primary-content_loading {
+    padding: 0px 20px;
+    .primary-wrapper_loading {
+        .brief-card_loading {
+            .brief-image_loading {
+            }
+            .brief-container_loading {
+                .brief-title_loading {
+                }
+                .brief-date_loading {
+                }
+                .brief-discription_loading {
+                }
+                .brief-more_loading {
+                }
+            }
+        }
+    }
+}
+}
+
+@media (max-width: 850px) {
+    .primary-content_loading {
+        .primary-wrapper_loading {
+            width: 100%;
+            height: 100%;
+            display: grid;
+            grid-template-columns: repeat(1,1fr);
+            grid-template-rows: repeat(4,1fr);
+            gap: 35px;
+            .brief-card_loading {
+                .brief-image_loading {
+                }
+                .brief-container_loading {
+                    height: 150px;
+                    .brief-title_loading {
+                        max-width: 900px;
+                    }
+                    .brief-date_loading {
+                    }
+                    .brief-discription_loading {
+                    }
+                    .brief-more_loading {
+                    }
+                }
+            }
+        }
+    }
+    }
+
+    @media (max-width: 500px) {
+        .primary-content_loading {
+            .primary-wrapper_loading {
+                width: 100%;
+                height: 100%;
+                display: grid;
+                grid-template-columns: repeat(1,1fr);
+                grid-template-rows: repeat(4,1fr);
+                gap: 35px;
+                .brief-card_loading {
+                    .brief-image_loading {
+                    }
+                    .brief-container_loading {
+                        height: 200px;
+                        .brief-title_loading {
+                            font-size: 17px;
+                            max-width: 900px;
+                        }
+                        .brief-date_loading {
+                            font-size: 12px;
+                        }
+                        .brief-discription_loading {
+                            font-size: 14px;
+                        }
+                        .brief-more_loading {
+                        }
+                    }
+                }
+            }
+        }
+        }

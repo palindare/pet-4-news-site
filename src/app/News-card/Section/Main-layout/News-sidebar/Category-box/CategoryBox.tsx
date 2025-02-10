@@ -1,12 +1,12 @@
 "use client"
 import "./CategoryBox.scss";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
 function CategoryBox({data}) {
     const [currentCategory, setCurrentCategory] = useState("Technology")
     const [allCategory,setAllCategory] = useState([])
-    
+    const state = useSelector(state => state.currentCategory.category)
     const dispatch = useDispatch()
     useEffect(() => {
         if (data && data.length) {
@@ -18,6 +18,8 @@ function CategoryBox({data}) {
             setAllCategory(category)
         }
     },[data])
+
+    console.log(data)
 
     const changeCategoryHandler = (category) => {
         setCurrentCategory(category)
@@ -34,7 +36,7 @@ function CategoryBox({data}) {
                 <div className="category-box_list">
                     {allCategory && allCategory.map(value => {
                         return (
-                            <div key={value} onClick={() => changeCategoryHandler(value)} className={`category-box_inner ${currentCategory === value ? "category-inner_active" : null } `}>{value}</div>
+                            <div key={value} onClick={() => changeCategoryHandler(value)} className={`category-box_inner ${state === value ? "category-inner_active" : null } `}>{value}</div>
                         )
                     })}
                 </div>

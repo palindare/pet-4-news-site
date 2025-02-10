@@ -21,7 +21,8 @@ function SliderContainer() {
         getAPI();
     }, []);
 
-    let sliderData = dataApi ? dataApi.slice(0,4) : []
+
+    let sliderData = dataApi ? dataApi.slice(4,8) : []
     return (
         <>
         <Provider store={store}>

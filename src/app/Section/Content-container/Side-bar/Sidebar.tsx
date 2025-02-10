@@ -10,8 +10,8 @@ import { useInView } from "react-intersection-observer";
 function SideBar({ dataApi }) {
   const [allCategory, setAllCategory] = useState([])
   const {ref, inView } = useInView({ threshold: 0.6 });
-  const [currentCard, setCurrentCard] = useState(6)
-  const [updateData, setUpdateData] = useState(dataApi?.slice(0, 6) || [])
+  const [currentCard, setCurrentCard] = useState(7)
+  const [updateData, setUpdateData] = useState(dataApi?.slice(0, 7) || [])
   const [showMore, setShowMore] = useState(false)
   useEffect(() => {
     if (!dataApi || dataApi.length === 0) return; 
@@ -38,10 +38,17 @@ function SideBar({ dataApi }) {
   }, [inView])
 
   useEffect(() => {
-      if (dataApi) {
-          setUpdateData(dataApi.slice(0, currentCard))
-      }
-  }, [currentCard, dataApi])
+    if (dataApi) {
+        const uniqueData = dataApi
+            .slice(0, currentCard)
+            .filter((item, index, self) =>
+                index === self.findIndex((el) => el.content === item.content)
+            );
+
+        setUpdateData(uniqueData);
+    }
+}, [currentCard, dataApi]);
+
 
   return (
     <>

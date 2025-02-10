@@ -2,9 +2,8 @@ import "./NewsCardMini.scss";
 import bookmark_img from "../../../images/News-gallery/bookmark.png"
 import Image from "next/image";
 import Link from "next/link";
-import { text } from "stream/consumers";
 
-function NewsCardMini ({image_logo,title,category,published_date}) {
+function NewsCardMini ({image_logo,translated_title,category,published_date}) {
   const date = new Date(published_date)
   const formattedDate = date.toLocaleString("ru-RU", {
     day: "2-digit",
@@ -13,7 +12,7 @@ function NewsCardMini ({image_logo,title,category,published_date}) {
     timeZone: "Europe/Moscow",
   });
 
-  const text = title[50] ? title.slice(0,54).trim() + "..." : title
+  const text = translated_title[37] ? translated_title.slice(0,37).trim() + "..." : translated_title
   
 
   return (

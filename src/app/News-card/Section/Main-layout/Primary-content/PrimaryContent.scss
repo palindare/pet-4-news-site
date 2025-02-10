@@ -7,84 +7,120 @@
     position: relative;
     width: 100%;
     height: 100%;
+
     .scroll-view {
         position: absolute;
         width: 20px;
         height: 10px;
         top: -100px;
     }
+
     .primary-wrapper {
         width: 100%;
         height: 100%;
         display: grid;
-        grid-template-columns: repeat(2,1fr);
-        grid-template-rows: repeat(4,1fr);
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(4, 1fr);
         gap: 35px;
+
         .brief-card {
             width: 100%;
             height: 100%;
+
             .brief-image {
+                cursor: pointer;
                 width: 100%;
                 height: 260px;
                 background-color: var(--news-card-background);
                 img {
                     width: 100%;
                     height: 100%;
+                    transition: all 0.1s;
+                    &:hover {
+                        opacity: 0.8;
+                    }
                 }
             }
+
             .brief-container {
                 width: 100%;
                 height: 210px;
+
                 .brief-title {
                     height: 44px;
                     margin: 10px 0px 0px;
                     max-width: 420px;
-                    font-size: 18px;
-                    color: #fff;
+
+                    span {
+                        cursor: pointer;
+                        font-size: 18px;
+                        color: #fff;
+                        transition: all 0.1s;
+
+                        &:hover {
+                            color: #3757f8;
+                        }
+
+                        &:hover ~ .brief-image {
+                            opacity: 0.8;
+                        }
+                    }
                 }
+
+                }
+                
+
                 .brief-date {
                     margin: 7px 0px 0px;
                     font-size: 14px;
                     color: #fff;
                     opacity: 0.4;
                 }
+
                 .brief-discription {
                     margin: 12px 0px 0px;
                     font-size: 16px;
                     color: #fff;
-                    font-family: Montserrat-SemiBold,sans-serif;
+                    font-family: Montserrat-SemiBold, sans-serif;
                     opacity: 0.8;
                 }
+
                 .brief-more {
+                    cursor: pointer;
+                    width: 30%;
                     margin: 8px 0px 0px;
                     color: #fff;
                     font-size: 17px;
+                    transition: all 0.1s;
+                    &:hover {
+                        color: #3757f8;
+                    }
                 }
             }
+          
         }
     }
-}
 
 @media (max-width: 1024px) {
-.primary-content {
-    padding: 0px 20px;
-    .primary-wrapper {
-        .brief-card {
-            .brief-image {
-            }
-            .brief-container {
-                .brief-title {
-                }
-                .brief-date {
-                }
-                .brief-discription {
-                }
-                .brief-more {
+    .primary-content {
+        padding: 0px 20px;
+
+        .primary-wrapper {
+            .brief-card {
+                .brief-image {}
+
+                .brief-container {
+                    .brief-title {}
+
+                    .brief-date {}
+
+                    .brief-discription {}
+
+                    .brief-more {}
                 }
             }
         }
     }
-}
 }
 
 @media (max-width: 850px) {
@@ -93,57 +129,67 @@
             width: 100%;
             height: 100%;
             display: grid;
-            grid-template-columns: repeat(1,1fr);
-            grid-template-rows: repeat(4,1fr);
+            grid-template-columns: repeat(1, 1fr);
+            grid-template-rows: repeat(4, 1fr);
             gap: 35px;
+
             .brief-card {
                 .brief-image {
+                    img {
+                        object-fit: cover;
+                    }
                 }
+
                 .brief-container {
                     height: 150px;
+
                     .brief-title {
                         max-width: 900px;
                     }
-                    .brief-date {
-                    }
-                    .brief-discription {
-                    }
-                    .brief-more {
-                    }
-                }
-            }
-        }
-    }
-    }
 
-    @media (max-width: 500px) {
-        .primary-content {
-            .primary-wrapper {
-                width: 100%;
-                height: 100%;
-                display: grid;
-                grid-template-columns: repeat(1,1fr);
-                grid-template-rows: repeat(4,1fr);
-                gap: 35px;
-                .brief-card {
-                    .brief-image {
-                    }
-                    .brief-container {
-                        height: 200px;
-                        .brief-title {
-                            font-size: 17px;
-                            max-width: 900px;
-                        }
-                        .brief-date {
-                            font-size: 12px;
-                        }
-                        .brief-discription {
-                            font-size: 14px;
-                        }
-                        .brief-more {
-                        }
-                    }
+                    .brief-date {}
+
+                    .brief-discription {}
+
+                    .brief-more {}
                 }
             }
         }
+    }
+}
+
+@media (max-width: 500px) {
+    .primary-content {
+        .primary-wrapper {
+            width: 100%;
+            height: 100%;
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            grid-template-rows: repeat(4, 1fr);
+            gap: 35px;
+
+            .brief-card {
+                .brief-image {}
+
+                .brief-container {
+                    height: 200px;
+
+                    .brief-title {
+                        font-size: 17px;
+                        max-width: 900px;
+                    }
+
+                    .brief-date {
+                        font-size: 12px;
+                    }
+
+                    .brief-discription {
+                        font-size: 14px;
+                    }
+
+                    .brief-more {}
+                }
+            }
         }
+    }
+}

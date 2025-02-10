@@ -17,8 +17,11 @@ function PageNumbers({ data }) {
             const totalPages = Math.ceil(data.length / 8);
             setAllPage(totalPages);
             setNextBtn(totalPages > 1);
+            if (state !== currentPage) {
+                setCurrentPage(state)
+            }
         }
-    }, [data]);
+    }, [data,state]);
 
     const changePageNum = (value) => {
         setCurrentPage(value);

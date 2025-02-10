@@ -18,13 +18,15 @@ function NewsGallery() {
   },[])
   useEffect(() => {
     if (Array.isArray(dataApi)) {
-      const data = dataApi.slice(18,24) 
+      const data = dataApi.slice(87,93) 
       data.forEach((value) => {
         newsData.push({ ...value,main: value === data[0] || value === data[data.length - 1] ? true : false})
         setUpdateData(newsData)
       })
     }
   }, [dataApi])
+
+
   return (
     <>
       <div className="marking-news_gallery">

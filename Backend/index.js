@@ -1,81 +1,102 @@
-const express = require("express");
-const axios = require("axios");
-const fs = require("fs");
-const Database = require("better-sqlite3");
-const cors = require("cors");
+const express = require('express');
+const axios = require('axios');
+const fs = require('fs');
+const Database = require('better-sqlite3');
+const cors = require('cors');
+const bodyParser = require('body-parser');
 
 const app = express();
 const port = 3001;
 
 // Разрешаем CORS для Next.js
-app.use(cors({ origin: "http://localhost:3000" }));
+app.use(cors({ origin: 'http://localhost:3000' }));
 
-// ✅ Правильная ссылка для скачивания файла SQLite с Google Drive
-const fileId = "1TKQuEGz9-5XZic_QBRKhB3yhQXiPmVKi";
-const fileUrl = `https://drive.google.com/uc?export=download&id=${fileId}`; 
+// Настройка bodyParser для обработки запросов с правильной кодировкой
+app.use(bodyParser.json({ type: 'application/json', charset: 'utf-8' }));
 
-// 🔹 Функция для скачивания SQLite файла
+// URL для скачивания SQLite файла
+const fileId = '1DDwR5spgCjBWQAWNZ0J3UgEZy7vGu-_z';
+const fileUrl = `https://drive.google.com/uc?export=download&id=${fileId}`;
+
+// Функция для скачивания файла SQLite
 async function downloadFile(url, dest) {
   const writer = fs.createWriteStream(dest);
 
   try {
     const response = await axios({
-      method: "get",
+      method: 'get',
       url: url,
-      responseType: "stream",
+      responseType: 'stream',
     });
 
     response.data.pipe(writer);
 
     return new Promise((resolve, reject) => {
-      writer.on("finish", resolve);
-      writer.on("error", reject);
+      writer.on('finish', resolve);
+      writer.on('error', reject);
     });
   } catch (error) {
-    throw new Error("Ошибка скачивания файла: " + error.message);
+    throw new Error('Ошибка скачивания файла: ' + error.message);
   }
 }
 
-// 🔹 Функция для извлечения данных из SQLite
-async function fetchDataFromSQLite(dbPath) {
-  const db = new Database(dbPath);
+// Функция для извлечения данных из SQLite
+function fetchDataFromSQLite(dbPath) {
+  const db = new Database(dbPath, { verbose: console.log });
 
   try {
-    const rows = db.prepare("SELECT * FROM articles").all();
+    // Убедимся, что база данных использует UTF-8
+    db.pragma('encoding = "UTF-8"');
+
+    // Читаем данные из таблицы articles
+    const rows = db.prepare('SELECT * FROM articles ').all();
+
+    // Проверяем, что данные корректно декодированы
+    rows.forEach(row => {
+      for (const key in row) {
+        if (typeof row[key] === 'string') {
+          row[key] = Buffer.from(row[key], 'utf8').toString('utf8');
+        }
+      }
+    });
+
     return rows;
   } catch (error) {
-    throw new Error("Ошибка чтения SQLite: " + error.message);
+    throw new Error('Ошибка чтения SQLite: ' + error.message);
   } finally {
-    db.close(); // ❗ Обязательно закрываем базу перед удалением файла
+    db.close();
   }
 }
 
-// 🔹 API Endpoint для получения данных
-app.get("/", async (req, res) => {
-  const tempFilePath = "./temp.db";
+// API Endpoint для получения данных
+app.get('/', async (req, res) => {
+  const tempFilePath = './temp.db';
 
   try {
-    console.log("Скачивание файла...");
+    console.log('Скачивание файла...');
     await downloadFile(fileUrl, tempFilePath);
 
-    console.log("Извлечение данных из SQLite...");
-    const data = await fetchDataFromSQLite(tempFilePath);
+    console.log('Извлечение данных из SQLite...');
+    const data = fetchDataFromSQLite(tempFilePath);
 
-    // Отправляем JSON клиенту
+    // Устанавливаем правильную кодировку для ответа
+    res.setHeader('Content-Type', 'application/json; charset=utf-8');
+
+    // Отправляем данные клиенту
     res.json(data);
   } catch (error) {
-    console.error("Ошибка:", error);
-    res.status(500).json({ error: error.message || "Ошибка сервера" });
+    console.error('Ошибка:', error);
+    res.status(500).json({ error: error.message || 'Ошибка сервера' });
   } finally {
     // Удаляем временный файл, если он существует
     if (fs.existsSync(tempFilePath)) {
       fs.unlinkSync(tempFilePath);
-      console.log("Файл удален:", tempFilePath);
+      console.log('Файл удален:', tempFilePath);
     }
   }
 });
 
-// 🔹 Запуск сервера
+// Запуск сервера
 app.listen(port, () => {
   console.log(`Сервер запущен на http://localhost:${port}`);
 });

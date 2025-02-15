@@ -1,6 +1,6 @@
 "use client"
 const defaultState = {
-    category: "Technology",
+    category: "Спорт",
     page: 1
 }
 

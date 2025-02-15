@@ -4,18 +4,10 @@ import { useState, useEffect } from "react";
 import NewsCard from "./News-card/NewsCard";
 import LoadingCard from "./Loading-card/loadingCard";
 
-function NewsGallery() {
-  const [dataApi, setDataApi] = useState([])
+function NewsGallery({dataApi}) {
   const [updateData, setUpdateData] = useState([])
   const newsData = []
-  useEffect(() => {
-    const getAPI = async () => {
-      const res = await fetch("http://localhost:3001", { next: {revalidate: 3600}})
-      setDataApi(await res.json())
-    }
-  
-    getAPI()
-  },[])
+
   useEffect(() => {
     if (Array.isArray(dataApi)) {
       const data = dataApi.slice(87,93) 
@@ -25,8 +17,6 @@ function NewsGallery() {
       })
     }
   }, [dataApi])
-
-
   return (
     <>
       <div className="marking-news_gallery">

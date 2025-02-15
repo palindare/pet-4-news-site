@@ -9,18 +9,7 @@ import { Provider } from "react-redux";
 import store from "@/app/store/store";
 
 
-function SliderContainer() {
-    const [dataApi, setDataApi] = useState([])
-    useEffect(() => {
-        const getAPI = async () => {
-            const res = await fetch("http://localhost:3001", { next: { revalidate: 3600 } });
-            const data = await res.json();
-            setDataApi(data)
-        };
-    
-        getAPI();
-    }, []);
-
+function SliderContainer({dataApi}) {
 
     let sliderData = dataApi ? dataApi.slice(4,8) : []
     return (

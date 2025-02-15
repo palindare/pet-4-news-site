@@ -57,9 +57,10 @@
                         color: #fff;
                         transition: all 0.1s;
 
-                        &:hover {
-                            color: #3757f8;
-                        }
+                        // &:hover {
+                        //     opacity: 0.8
+
+                        // }
 
                         &:hover ~ .brief-image {
                             opacity: 0.8;
@@ -79,6 +80,7 @@
 
                 .brief-discription {
                     margin: 12px 0px 0px;
+                    height: 100px;
                     font-size: 16px;
                     color: #fff;
                     font-family: Montserrat-SemiBold, sans-serif;
@@ -92,9 +94,9 @@
                     color: #fff;
                     font-size: 17px;
                     transition: all 0.1s;
-                    &:hover {
-                        color: #3757f8;
-                    }
+                    // &:hover {
+                    //     color: #3757f8;
+                    // }
                 }
             }
           

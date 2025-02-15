@@ -4,15 +4,7 @@ import "./ContentContainer.scss";
 import MainContent from "./Main-content/MainContent";
 import SideBar from "./Side-bar/Sidebar";
 
-function ContentContainer () {
-    const [dataApi, setDataApi] = useState([])
-      useEffect(() => {
-        const getAPI = async () => {
-          const res = await fetch("http://localhost:3001", { next: {revalidate: 3600}})
-          setDataApi(await res.json())
-        }
-        getAPI()
-      },[])
+function ContentContainer ({dataApi}) {
 
   return (
   <>

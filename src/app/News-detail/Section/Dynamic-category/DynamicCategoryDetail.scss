@@ -1,0 +1,54 @@
+@font-face {
+    font-family: Montserrat-medium;
+    src: url("../../../fonts/Montserrat-Medium.ttf");
+}
+
+.marking-dynamic_detail {
+    width: 100%;
+    height: 350px;
+    background-color: var(--primary-bg);
+    .dynamic-detail {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 120px 0px;
+        .dynamic-detail_container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            .dynamic-detail_items {
+                display: flex;
+                color: #fff;
+                font-size: 14px;
+                font-family: Montserrat-medium, sans-serif;
+                background-color: var(--card-background);
+                font-weight: bold;
+                padding: 2px 5px 2px 5px;
+                gap: 2px;
+                .dynamic-detail_image {
+                    margin: 2px 0px 0px 0px;
+                    img {
+                        width: 14px;
+                        height: 12px;
+                    }
+                }
+                .dynamic-detail_title {
+
+                }
+            }
+            .dynamic-detail_discription {
+                color: #fff;
+                font-size: 30px;
+                max-width: 700px;
+                text-align: center;
+            }
+        }
+    }
+}
+
+@media (max-width: 1300px) {
+    .marking-detail_category {
+        padding: 0 20px;
+    }
+}

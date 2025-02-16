@@ -7,11 +7,12 @@ function NewsCard({ newsData }) {
   return (
     <>
       {newsData &&
-        newsData.map(({ translated_title, image_url, published_date, category, main }) => {
+        newsData.map(({ translated_title, image_url, published_date, category,id, main }) => {
           const uniqueKey = uuidv4();  
           return main ? (
             <NewsCardBig
               key={uniqueKey}  
+              id={id}
               translated_title={translated_title}
               image_logo={image_url}
               published_date={published_date}
@@ -20,6 +21,7 @@ function NewsCard({ newsData }) {
           ) : (
             <NewsCardMini
               key={uniqueKey} 
+              id={id}
               translated_title={translated_title}
               image_logo={image_url}
               published_date={published_date}

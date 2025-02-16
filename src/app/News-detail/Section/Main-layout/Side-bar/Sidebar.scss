@@ -1,0 +1,15 @@
+.sidebar-container {
+    width: 486px;
+    .position-items {
+        position: sticky;
+        top: 90px;
+    }
+}
+
+
+@media (max-width: 1300px) {
+    .sidebar-container {
+        width: 100%;
+        margin: 0px 0px 40px;
+    }
+}

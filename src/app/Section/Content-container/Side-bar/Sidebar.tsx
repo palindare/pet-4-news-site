@@ -58,9 +58,11 @@ function SideBar({ dataApi }) {
             {allCategory && allCategory.length !== 0 ? allCategory.map(({ category, image }) => {
               return (
                 <div key={`${category}-${image}`} className="category-tab">
+                  <Link href={`/news/${category}`}>
                   <div className="category-img">
                     <Image src={image} alt="img" width={400} height={700} />
                   </div>
+                </Link>
                   <div className="category-text"><Link href="#">{category}</Link></div>
                 </div>
               )

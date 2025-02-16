@@ -1,0 +1,156 @@
+@font-face {
+    font-family: Montserrat-medium;
+    src: url("../../../../../fonts/Montserrat-Medium.ttf");
+}
+
+.more-news_container {
+    margin: 40px 0px;
+    .more-news_items {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .more-news_title {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #fff;
+            font-family: Montserrat-medium,sans-serif;
+            width: 100%;
+        }
+        .more-news_separation {
+            width: 100%;
+            height: 1px;
+            background-color: #fff;
+        }
+    }
+    .more-news_wrapper {
+        display: grid;
+        flex-grow: 1;
+        grid-template-columns: repeat(3,1fr);
+        grid-template-rows: repeat(3,1fr);
+        margin: 30px 0px 0px;
+        gap: 20px;
+        .card-news {
+            a {
+                text-align: center;
+                text-decoration: none;
+                color: #fff;
+            }
+            .card-image {
+                    width: 100%;
+                .img {
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+            .card-discription {
+                width: 100%;
+                .card-info {
+                    margin: 10px 0px 0px;
+                    color: #fff;
+                    text-align: center;
+                    font-family: Montserrat-medium,sans-serif;
+                    width: 100%; /* Растягиваем на всю ширину родителя */
+                    max-width: 600px; /* Ограничиваем максимальную ширину */
+                    word-wrap: break-word; /* Переносим длинные слова */
+                    overflow: hidden; /* Обрезаем текст, если он не влезает */
+                    text-overflow: ellipsis; /* Добавляем '...' для длинного текста */
+                    white-space: normal; /* Позволяем перенос строк */
+                }
+            }
+        }
+
+    }
+}
+
+
+@media (max-width: 1300px) {
+    .more-news_container {
+        .more-news_items {
+            .more-news_title {
+            }
+            .more-news_separation {
+            }
+        }
+        .more-news_wrapper {
+            grid-template-columns: repeat(3,1fr);
+            .card-news {
+                width: 100%;
+                a {
+                }
+                .card-image {
+                    .img {
+                        width: 100% !important;
+                    }
+                }
+                .card-discription {
+                    .card-info {
+                        font-size: 18px;
+                    }
+                }
+            }
+    
+        }
+    }
+    
+}
+
+@media (max-width: 768px) {
+    .more-news_container {
+        .more-news_items {
+            .more-news_title {
+                font-size: 20px;
+            }
+            .more-news_separation {
+                display: none;
+            }
+        }
+        .more-news_wrapper {
+            grid-template-columns: repeat(2,1fr);
+            .card-news {
+                a {
+                }
+                .card-image {
+                    .img {
+                    }
+                }
+                .card-discription {
+                    .card-info {
+                    }
+                }
+            }
+    
+        }
+    }
+    
+}
+
+@media (max-width: 500px) {
+    .more-news_container {
+        .more-news_items {
+            .more-news_title {
+            }
+            .more-news_separation {
+            }
+        }
+        .more-news_wrapper {
+            grid-template-columns: repeat(1,1fr);
+            .card-news {
+                a {
+                }
+                .card-image {
+                    .img {
+                    }
+                }
+                .card-discription {
+                    .card-info {
+                    }
+                }
+            }
+    
+        }
+    }
+    
+}

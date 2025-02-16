@@ -1,0 +1,117 @@
+@font-face {
+    font-family: Montserrat-medium;
+    src: url("../../../../../fonts/Montserrat-Medium.ttf");
+}
+
+.card-info_container {
+    width: 100%;
+    .card-items {
+        display: flex;
+        flex-direction: column;
+        font-family: Montserrat-medium,sans-serif;
+        gap: 20px;
+        .card-discription {
+            font-size: 20px;
+            color: #fff;
+            margin: 0px 0px 10px 00px;
+            font-family: Montserrat-medium,sans-serif;
+            font-weight: bold;
+        }
+        .Load-discriotion {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            height: 20px;
+            background-color: var(--news-card-background);
+        }
+        .card-image {
+            img {
+                width: 100%;
+                height: 450px;
+            }
+        }
+        .load-image {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            height: 450px;
+            background-color: var(--news-card-background);
+        }
+        .card-content {
+            color: #fff;
+            font-family: Montserrat-medium,sans-serif;
+            text-align: justify;
+            line-height: 24px;
+        }
+    }
+}
+
+.load-image::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -150%;
+    width: 150%;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 0) 100%);
+    transform: skewX(-20deg);
+    animation: shimmer 2s infinite;
+}
+
+.Load-discriotion::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -150%;
+    width: 150%;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 0) 100%);
+    transform: skewX(-20deg);
+    animation: shimmer 2s infinite;
+}
+  
+  
+@keyframes shimmer {
+    0% {
+      left: -150%;
+    }
+    100% {
+      left: 150%;
+    }
+}
+
+@media (max-width: 1300px) {
+   
+.card-info_container {
+    .card-items {
+        .card-discription {
+        }
+        .card-image {
+            img {
+                height: 100%;
+            }
+        }
+        .card-content {
+        }
+    }
+}
+}
+
+
+@media (max-width: 480px) {
+    .card-info_container {
+        .card-items {
+            .card-discription {
+                font-size: 18px;
+            }
+            .card-image {
+                img {
+                }
+            }
+            .card-content {
+                font-size: 15px;
+                
+            }
+        }
+    }
+    }

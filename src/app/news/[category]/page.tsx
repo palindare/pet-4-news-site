@@ -1,4 +1,4 @@
-import NewsCard from "../News-card/NewsCard";
+import NewsCard from "../../News-card/NewsCard";
 
 function Home() {
   return (

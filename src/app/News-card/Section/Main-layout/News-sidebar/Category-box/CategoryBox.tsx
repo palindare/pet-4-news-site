@@ -1,21 +1,35 @@
 "use client";
 import "./CategoryBox.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useRouter, useParams, useSearchParams } from "next/navigation";
 
 function CategoryBox({ data = [] }) {
-    const state = useSelector(state => state.currentCategory?.category || "Technology");
     const dispatch = useDispatch();
-
+    const router = useRouter();
+    const searchParams = useSearchParams();
+    const params = useParams();
+    const category = decodeURIComponent(params.category);
     const allCategory = [...new Set(data.map(item => item.category))];
+    const [currentCategory, setCurrentCategory] = useState(category);
 
-    const [currentCategory, setCurrentCategory] = useState(state);
+    // При загрузке страницы берем категорию из URL
+    useEffect(() => {
+        const categoryFromURL = searchParams.get("category");
+        if (categoryFromURL) {
+            setCurrentCategory(categoryFromURL);
+            dispatch({ type: "CHANGE_CATEGORY", payload: categoryFromURL });
+        }
+    }, [searchParams, dispatch]);
 
     const changeCategoryHandler = (category) => {
-        if (!category) return;
+        if (!category || currentCategory === category) return;
+
         setCurrentCategory(category);
         dispatch({ type: "CHANGE_CATEGORY", payload: category });
         dispatch({ type: "CHANGE_PAGE", payload: 1 });
+
+        router.push(`/news/${category}`, { scroll: false });
     };
 
     return (
@@ -30,7 +44,7 @@ function CategoryBox({ data = [] }) {
                         <div 
                             key={value} 
                             onClick={() => changeCategoryHandler(value)} 
-                            className={`category-box_inner ${state === value ? "category-inner_active" : ""}`}
+                            className={`category-box_inner ${currentCategory === value ? "category-inner_active" : ""}`}
                         >
                             {value}
                         </div>

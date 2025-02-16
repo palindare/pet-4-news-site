@@ -38,7 +38,7 @@ function MainContent({ dataApi }) {
             </div>
             <div className="news-feed">
                 {updateData && updateData.length > 0 ? (
-                    updateData.map(({ id, translated_title, published_date, image_url }) => {
+                    updateData.map(({ id, translated_title,category, published_date, image_url }) => {
                         const text = translated_title.length > 51 ? translated_title.slice(0, 51).trim() + "..." : translated_title;
                         const date = new Date(published_date).toLocaleString("ru-RU", {
                             day: "2-digit",
@@ -50,14 +50,14 @@ function MainContent({ dataApi }) {
                         return (
                             <div key={id} className="news-card">
                                 <div className="news-card_image">
-                                    <Image src={image_url} alt="news image" width={400} height={700} />
+                                <Link href={`/news/${category}/${id}`}><Image src={image_url} alt="news image" width={400} height={700} /></Link>
                                 </div>
                                 <div className="news-card_box">
                                     <div className="news-card_title">
-                                        <Link href="#">{text}</Link>
+                                        <Link href={`/news/${category}/${id}`}>{text}</Link>
                                     </div>
                                     <div className="news-card_data">
-                                        <Link href="#">{date}</Link>
+                                        <Link href={`/news/${category}/${id}`}>{date}</Link>
                                     </div>
                                 </div>
                             </div>

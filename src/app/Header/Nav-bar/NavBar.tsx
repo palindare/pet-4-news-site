@@ -16,7 +16,7 @@ function NavBar() {
                 <Link href="/">
                   <li>Главная</li>
                 </Link>
-                <Link href="/news">
+                <Link href="/news/Спорт">
                   <li>Новости</li>
                 </Link>
                 <Link href="#">

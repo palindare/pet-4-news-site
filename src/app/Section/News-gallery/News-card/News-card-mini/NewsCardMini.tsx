@@ -3,7 +3,7 @@ import bookmark_img from "../../../images/News-gallery/bookmark.png"
 import Image from "next/image";
 import Link from "next/link";
 
-function NewsCardMini ({image_logo,translated_title,category,published_date}) {
+function NewsCardMini ({image_logo,translated_title,category,id,published_date}) {
   const date = new Date(published_date)
   const formattedDate = date.toLocaleString("ru-RU", {
     day: "2-digit",
@@ -18,7 +18,7 @@ function NewsCardMini ({image_logo,translated_title,category,published_date}) {
   return (
   <> 
     <div className="news-card">
-            <div className="news-card-image"><Image src={image_logo} width={400} height={700} alt="image" /></div>
+            <div className="news-card-image"><Link href={`/news/${category}/${id}`}><Image src={image_logo} width={400} height={700} alt="image" /></Link></div>
             <div className="post-tags_card">
                 <div className="bookmark-icon_card"><Image src={bookmark_img} alt="image"></Image></div>
                 <div className="category-text_card"><Link href="#"><span>{category}</span></Link></div>

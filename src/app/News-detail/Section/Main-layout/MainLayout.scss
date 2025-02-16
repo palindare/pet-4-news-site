@@ -1,0 +1,22 @@
+.Main-layout {
+    flex-grow: 1;
+    background-color: var(--nav-color);
+    padding: 40px 0;
+    .Main-wrapper {
+        display: flex;
+        height: 100%;
+        max-width: 1280px;
+        margin: 0 auto;
+        gap: 55px;
+    }
+}
+
+@media (max-width: 1300px) {
+    .Main-layout {
+        padding: 40px 20px 0px;
+        .Main-wrapper {
+            flex-direction: column;
+            gap: 20px;
+        }
+    }
+}

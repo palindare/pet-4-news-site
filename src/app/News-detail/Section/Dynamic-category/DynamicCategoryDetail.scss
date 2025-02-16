@@ -11,7 +11,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding: 120px 0px;
+        padding: 130px 0px;
         .dynamic-detail_container {
             display: flex;
             flex-direction: column;
@@ -24,8 +24,9 @@
                 font-family: Montserrat-medium, sans-serif;
                 background-color: var(--card-background);
                 font-weight: bold;
-                padding: 2px 5px 2px 5px;
+                padding: 2px 7px 2px 7px;
                 gap: 2px;
+                border-radius: 3px;
                 .dynamic-detail_image {
                     margin: 2px 0px 0px 0px;
                     img {
@@ -47,8 +48,24 @@
     }
 }
 
-@media (max-width: 1300px) {
-    .marking-detail_category {
+@media (max-width: 480px) {
+    .marking-dynamic_detail {
         padding: 0 20px;
+        .dynamic-detail {
+            .dynamic-detail_container {
+                .dynamic-detail_items {
+                    .dynamic-detail_image {
+                        img {
+                        }
+                    }
+                    .dynamic-detail_title {
+    
+                    }
+                }
+                .dynamic-detail_discription {
+                    font-size: 25px;
+                }
+            }
+        }
     }
 }

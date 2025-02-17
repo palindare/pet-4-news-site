@@ -5,16 +5,16 @@ import ContentContainer from "./Content-container/ContentContainer";
 
 async function Section() {
     const res = await fetch("http://localhost:3000/test.json");
-    const dataApi = await res.json();
+    const dataApi = await res.json()
+
 
     return (
-    <>
-        <NewsGallery dataApi={dataApi}/>
-        <SliderContainer dataApi={dataApi}/>
-        <ContentContainer dataApi={dataApi}/>
-    </>
-    )
+        <>
+            <NewsGallery dataApi={dataApi} /> 
+            <SliderContainer dataApi={dataApi} />
+            <ContentContainer dataApi={dataApi} />
+        </>
+    );
 }
-
 
 export default Section;

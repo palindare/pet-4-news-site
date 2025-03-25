@@ -1,0 +1,25 @@
+* {
+    color: #fff;
+}
+
+@font-face {
+    font-family: Montserrat-regular;
+    src: url("../../../../../fonts/Montserrat-SemiBold.ttf");
+}
+
+.container-result_value {
+    .search-info {
+        display: flex;
+        flex-direction: column;
+        padding: 0px 0px 16px;
+        border-bottom: 1px solid #fff;
+        gap: 16px;
+
+        .search-value {
+            font-size: 36px;
+        }
+        .results-count {
+            font-family: Montserrat-regular, sans-serif;
+        }
+    }
+}

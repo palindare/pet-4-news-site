@@ -1,0 +1,13 @@
+.background-search_result {
+    background-color: var(--primary-bg);
+    .marking-search_result {
+        max-width: 1280px;
+        margin: 0px auto;
+        width: 100%;
+        .main-result {
+            display: flex;
+            padding: 60px 0px;
+            gap: 55px;
+        }
+    }
+}
